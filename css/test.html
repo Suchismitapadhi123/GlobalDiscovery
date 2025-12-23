@@ -1,0 +1,401 @@
+<!doctype html> 
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Country Details</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+  *{ 
+    margin: 0;
+    padding: 0;
+    font-family: 'Cinzel', serif;
+    box-sizing: border-box; 
+  }
+  html{
+    height: 100%;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  body{
+    background-image: linear-gradient(450deg, #700759 0% , #53135c, #803683);
+    background-color: #6e2768;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .container{
+    width: 100%;
+    padding: 1%;
+    flex: 1; /* main content grows */
+  }
+  h1{
+    font-size: 35px;
+  }
+  main{
+    margin: 2.7%;
+  }
+
+  /* country details card */
+  .countrydetails{
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    gap: 44px;
+    background-color: floralwhite;
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  }
+  .countrydetails img{
+    width: 37%;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+  .ice{
+    padding: 1%;
+    margin: 15px;
+    width: 100%;
+  }
+  .detailstext{
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+    column-gap: 2px;
+    max-height: 170px;
+    flex-wrap: wrap;
+  }
+  h1{
+    text-align: center;
+    margin-block: 3%;
+  }
+  @media(max-width: 920px){
+    .countrydetails{
+      flex-direction: column;
+      align-items: flex-start;
+      margin-left: 10px;
+      gap: 16px;
+    }
+    .detailstext{
+      display: block;
+      max-height:unset ;
+    }
+    h1{
+      font-size: 1.4rem;
+    }
+    .detailstext p{
+      margin: 16px;
+    }
+    .countrydetails img{
+      width: 100%;
+    }
+  }
+
+  /* ✅ FIXED FOOTER */
+  footer{
+    width: 100%;
+    background: linear-gradient(to right, #00093c , #2d0b00);
+    color: white;
+    padding: 30px 0 20px;
+    border-top-left-radius: 125px;
+    font-size: 13px;
+    line-height: 17px;
+    margin-top: auto; /* ensures footer stays at bottom */
+  }
+
+  .row{
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    margin: auto;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .col{
+    flex-basis: 25%;
+    padding: 10px;
+  }
+  .logo{
+    width: 80px;
+    margin-bottom: 30px;
+  }
+  .col h3{
+    width: fit-content;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  ul li{
+    list-style: none;
+    margin-bottom: 12px;
+  }
+  ul li a{
+    text-decoration: none;
+    color: white;
+  }
+  .social .fa-brands,
+  .social .fa-solid{
+    height: 40px;
+    border-radius: 50%;
+    width: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    background: #fff;
+    color: #000;
+    margin-right: 15px;
+    cursor: pointer;
+  }
+  h3{
+    color: white;
+  }
+  .col:nth-child(2){
+    flex-basis: 15%;
+  }
+  hr{
+    width: 90%;
+    border:0;
+    border-bottom: 1px solid #ccc;
+    margin:20px auto ;
+  }
+  .copyright{
+    text-align: center;
+  }
+  @media(max-width:920px){
+    .col{
+      flex-basis: 100%;
+    }
+  }
+
+  .underline{
+    width: 100%;
+    height: 5px;
+    background: #767676;
+    border-radius: 3px;
+    position: absolute;
+    top: 25px;
+    left: 0;
+  }
+  .underline span{
+    width: 15px;
+    height: 100%;
+    background: #fff;
+    border-radius: 3px;
+    position: absolute;
+    top: 0;
+    left: 15px;
+    animation: run 2s linear infinite;
+  }
+  @keyframes run{
+    0%{ left: 0px; }
+    100%{ left: 80%; }
+  }
+
+  /* Navbar */
+  .header{
+    padding: 0 2rem;
+    height: 5.3rem;
+    width: 100%;
+    top:0;
+    display: flex;
+    z-index: 1;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #00093c , #2d0b00);
+    position: fixed;
+    border:2px solid darkblue;
+  }
+  .header h2{
+    font-size: 1.5rem;
+    margin-left: 10px;
+    background-image: linear-gradient(to right, #b8860b 0, #b8860b 100%);
+    color:transparent;
+    -webkit-background-clip:text;
+  }
+  .header h2 span{ color: white; font-size: 1.7rem; }
+  .list{
+    display: flex;
+    gap: 4.1rem;
+    margin-right: 12px;
+    list-style: none;
+    background-image: linear-gradient(to right, white, gold);
+    -webkit-background-clip: text;
+  }
+
+  .search-row{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    justify-content:center;
+    margin: 18px 0;
+  }
+  .search-row input{
+    padding:10px 14px;
+    border-radius:6px;
+    border:1px solid rgba(0,0,0,0.2);
+    width: 320px;
+    font-size: 16px;
+  }
+  .search-row button{
+    padding:10px 14px;
+    cursor:pointer;
+    background: #2b7a78;
+    color:white;
+    border:none;
+    border-radius:6px;
+    font-weight:600;
+  }
+  .meta-row{
+    font-size: 14px;
+    color: #333;
+    margin-top: 6px;
+  }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h2>Country <span>Details</span></h2>
+  </header>
+
+  <main class="container">
+    <div class="search-row" style="margin-top: 6.5rem;">
+      <input id="countryInput" type="search" placeholder="Enter country name (e.g. India)" />
+      <button id="searchBtn">Search</button>
+      <button id="allBtn" title="Load all countries (may be heavy)">Load All</button>
+    </div>
+
+    <section class="countrydetails" id="countryDetails" style="display:none;">
+      <img id="countryFlag" alt="Country flag" />
+      <div class="ice">
+        <div class="detailstext" id="detailText"></div>
+      </div>
+    </section>
+
+    <div id="listArea" style="margin-top: 24px;"></div>
+  </main>
+
+  <footer>
+    <div class="row">
+      <div class="col">
+        <p>Country details demo — powered by REST Countries API</p>
+      </div>
+      <div class="col">
+        <h3>Docs</h3>
+        <ul>
+          <li><a href="https://restcountries.com" target="_blank" style="color:white">REST Countries</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <p class="copyright">© 2025 Country Finder | Designed by You</p>
+  </footer>
+
+  <script>
+    const apiByNameFull = name => `https://restcountries.com/v3.1/name/${encodeURIComponent(name)}?fullText=true`;
+    const apiByNameFuzzy = name => `https://restcountries.com/v3.1/name/${encodeURIComponent(name)}`;
+    const apiAll = 'https://restcountries.com/v3.1/all';
+
+    const countryDetailsEl = document.getElementById('countryDetails');
+    const countryFlag = document.getElementById('countryFlag');
+    const detailText = document.getElementById('detailText');
+    const listArea = document.getElementById('listArea');
+
+    function objectValuesToList(obj) {
+      if (!obj) return '—';
+      return Object.values(obj).map(v => (typeof v === 'string' ? v : (v.name || JSON.stringify(v)))).join(', ');
+    }
+
+    async function fetchCountry(url) {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('Not found');
+      const data = await res.json();
+      if (!Array.isArray(data) || data.length === 0) throw new Error('No data');
+      return data[0];
+    }
+
+    function renderCountry(country) {
+      const name = country.name.common;
+      const flag = country.flags.svg || country.flags.png;
+      const capital = country.capital ? country.capital[0] : '—';
+      const population = country.population.toLocaleString();
+      const region = country.region;
+      const languages = objectValuesToList(country.languages);
+      const currencies = country.currencies ? Object.values(country.currencies).map(c => c.name + (c.symbol ? ` (${c.symbol})` : '')).join(', ') : '—';
+      const area = country.area.toLocaleString() + ' km²';
+      const subregion = country.subregion || '—';
+      const timezones = country.timezones.join(', ');
+
+      countryFlag.src = flag;
+      detailText.innerHTML = `
+        <h1>${name}</h1>
+        <p class="meta-row"><strong>Capital:</strong> ${capital}</p>
+        <p class="meta-row"><strong>Region:</strong> ${region} (${subregion})</p>
+        <p class="meta-row"><strong>Population:</strong> ${population}</p>
+        <p class="meta-row"><strong>Area:</strong> ${area}</p>
+        <p class="meta-row"><strong>Languages:</strong> ${languages}</p>
+        <p class="meta-row"><strong>Currencies:</strong> ${currencies}</p>
+        <p class="meta-row"><strong>Timezones:</strong> ${timezones}</p>
+      `;
+      countryDetailsEl.style.display = 'flex';
+      listArea.innerHTML = '';
+    }
+
+    async function showCountry(name) {
+      detailText.innerHTML = 'Loading...';
+      countryDetailsEl.style.display = 'flex';
+      try {
+        const data = await fetchCountry(apiByNameFull(name));
+        renderCountry(data);
+      } catch {
+        try {
+          const data = await fetchCountry(apiByNameFuzzy(name));
+          renderCountry(data);
+        } catch {
+          detailText.innerHTML = `<p style="color:red;">Country "${name}" not found.</p>`;
+          countryFlag.src = '';
+        }
+      }
+    }
+
+    document.getElementById('searchBtn').addEventListener('click', () => {
+      const q = document.getElementById('countryInput').value.trim();
+      if (q) showCountry(q);
+    });
+
+    document.getElementById('countryInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.getElementById('searchBtn').click();
+    });
+
+    document.getElementById('allBtn').addEventListener('click', async () => {
+      listArea.innerHTML = '<p>Loading all countries...</p>';
+      try {
+        const res = await fetch(apiAll);
+        const data = await res.json();
+        data.sort((a,b)=>a.name.common.localeCompare(b.name.common));
+        const ul = document.createElement('ul');
+        ul.style.listStyle = 'none';
+        ul.style.maxHeight = '400px';
+        ul.style.overflowY = 'auto';
+        ul.style.padding = '6px';
+        data.forEach(c=>{
+          const li=document.createElement('li');
+          li.textContent=c.name.common;
+          li.style.cursor='pointer';
+          li.style.padding='6px';
+          li.onclick=()=>showCountry(c.name.common);
+          ul.appendChild(li);
+        });
+        listArea.innerHTML='';
+        listArea.appendChild(ul);
+      } catch(err){
+        listArea.innerHTML = `<p style="color:red;">Error loading all countries.</p>`;
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', ()=>showCountry('India'));
+  </script>
+</body>
+</html>
